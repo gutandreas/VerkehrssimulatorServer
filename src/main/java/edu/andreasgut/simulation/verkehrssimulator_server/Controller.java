@@ -32,12 +32,8 @@ public class Controller {
     }
 
     @GetMapping(value="/ranking")
-    public ResponseEntity<String> loadMap() {
+    public ResponseEntity<String> loadData() {
         JSONObject[] jsonObjects = new JSONObject[limit];
-        int counter = 0;
-        //map.put("Peter", 40);
-        //map.put("Claudia", 60);
-
 
         JSONArray jsonArray = new JSONArray();
         for (int i = 0; i < limit; i++){
@@ -56,7 +52,7 @@ public class Controller {
     }
 
     @PostMapping(value="/ranking")
-    public String servePostRequest(@RequestBody String body){
+    public String saveData(@RequestBody String body){
 
         if (counter < limit) {
 
