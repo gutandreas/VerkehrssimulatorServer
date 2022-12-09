@@ -1,15 +1,31 @@
 <script src="scripts/jQuery.js"></script>
 <script src="scripts/scripts.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
 
 <input type="button" value="Aktualisieren" onclick="refresh_page()">
 <input type="button" value="Sortieren" onclick="sortTable(0)">
-<table id="table">
-    <tr>
-        <th>Name</th>
-        <th>Autos</th>
-        <th>Sekunden</th>
-        <th>Zeitpunkt</th>
-    </tr>
+<input type="button" value="Daten auf Server entfernen" onclick="deleteData()">
 
-</table>
+<h1>Reports aus dem Verkehrssimulator</h1>
+<div class="tbl-header">
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Autos</th>
+            <th>Anzahl Sekunden</th>
+            <th>Zeit</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<div class="tbl-content">
+    <table id="table">
+        <tbody>
+            <tr>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
 

@@ -4,15 +4,12 @@ import org.json.JSONArray;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.json.JSONObject;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.HashMap;
-import java.util.Map;
+
+
 
 @RestController
 public class Controller {
@@ -21,6 +18,7 @@ public class Controller {
     int limit = 20;
     String[][] dataArray = new String[limit][3];
     int counter = 0;
+    String password = "SimulDel";
 
 
     @GetMapping(value="/index")
@@ -33,7 +31,6 @@ public class Controller {
 
     @GetMapping(value="/ranking")
     public ResponseEntity<String> loadData() {
-        JSONObject[] jsonObjects = new JSONObject[limit];
 
         JSONArray jsonArray = new JSONArray();
         for (int i = 0; i < limit; i++){
@@ -52,7 +49,7 @@ public class Controller {
     }
 
     @PostMapping(value="/ranking")
-    public String saveData(@RequestBody String body){
+    public ResponseEntity<String> saveData(@RequestBody String body){
 
         if (counter < limit) {
 
@@ -71,7 +68,31 @@ public class Controller {
 
         }
 
-        return "Daten an Server gesendet";
+        return new ResponseEntity<>("Daten vom Server erfasst", new HttpHeaders(), HttpStatus.OK);
+
+
+    }
+
+
+    @DeleteMapping(value="/ranking")
+    public ResponseEntity<String> deleteData(@RequestBody String body){
+
+        JSONObject jsonObject = new JSONObject(body);
+        String password = jsonObject.getString("password");
+
+        if (password.equals(this.password)){
+            dataArray = new String[limit][3];
+            counter = 0;
+            System.out.println("Server Daten gelöscht");
+            return new ResponseEntity<>("Passwort korrekt", new HttpHeaders(), HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<>("Passwort falsch", new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE);
+        }
+
+
+
+
 
 
     }

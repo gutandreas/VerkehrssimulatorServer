@@ -1,3 +1,5 @@
+
+
 function refresh_page(){
 
     fetch("/ranking", {method: 'GET'})
@@ -6,8 +8,7 @@ function refresh_page(){
         .then(json => {
             console.log(json.data)
 
-            var table = document.getElementById("table");
-            table.getElementsByTagName("tbody")[0].innerHTML = table.rows[0].innerHTML;
+            $("#table tr").remove();
 
             for (i = 0; i < json.data.length; i++){
 
@@ -17,7 +18,7 @@ function refresh_page(){
                     var table = document.getElementById("table");
 
                     // Create an empty <tr> element and add it to the 1st position of the table:
-                    var row = table.insertRow(i + 1);
+                    var row = table.insertRow(i);
 
                     // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
                     var cell1 = row.insertCell(0);
@@ -32,6 +33,8 @@ function refresh_page(){
                     cell4.innerHTML = new Date().toLocaleString();
                 }
             }
+
+
         })
 
 }
@@ -70,3 +73,35 @@ function sortTable(column) {
         }
     }
 }
+
+function deleteData(){
+
+
+    let password = prompt("Passwort:");
+
+    fetch("/ranking", {
+        method: 'DELETE',
+        body: JSON.stringify({
+        "password": password
+    }),
+        headers: {
+        "Content-type": "application/json"
+        }
+    })
+        .then(res => res.text())
+        .then(text => {
+            console.log(text)
+            if (text == "Passwort korrekt"){
+                alert("Die Daten auf dem Server wurden entfernt. Aktualisieren Sie die Tabelle.")
+            }
+            else {
+                alert("Das Passwort ist falsch.")
+            }
+        })
+}
+
+// Scroll Funktion für Tabelle
+$(window).on("load resize ", function() {
+    var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+    $('.tbl-header').css({'padding-right':scrollWidth});
+}).resize();
