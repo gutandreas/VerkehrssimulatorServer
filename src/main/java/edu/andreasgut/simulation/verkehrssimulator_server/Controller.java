@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class Controller {
 
 
-    int limit = 20;
+    int limit = 1000;
     String[][] dataArray = new String[limit][3];
     int counter = 0;
     String password = "SimulDel";
@@ -31,6 +31,13 @@ public class Controller {
 
     @GetMapping(value="/ranking")
     public ResponseEntity<String> loadData() {
+
+        dataArray[0][0] = "Peter";
+        dataArray[0][1] = "50";
+        dataArray[0][2] = "90";
+        dataArray[1][0] = "Hans";
+        dataArray[1][1] = "50";
+        dataArray[1][2] = "30";
 
         JSONArray jsonArray = new JSONArray();
         for (int i = 0; i < limit; i++){

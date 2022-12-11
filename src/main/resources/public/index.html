@@ -1,31 +1,34 @@
-<script src="scripts/jQuery.js"></script>
-<script src="scripts/scripts.js"></script>
-<link rel="stylesheet" type="text/css" href="style.css">
+<head>
+    <script src="scripts/jQuery.js"></script>
+    <script src="scripts/sortable.js"></script>
+    <script src="scripts/scripts.js"></script>
+    <link rel="stylesheet" type="text/css" href="sortable.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="button.css">
+</head>
 
-<input type="button" value="Aktualisieren" onclick="refresh_page()">
-<input type="button" value="Sortieren" onclick="sortTable(0)">
-<input type="button" value="Daten auf Server entfernen" onclick="deleteData()">
+<div class="button-area">
+    <input class="button-71" type="button" value="Aktualisieren" onclick="refresh_page()">
+    <input class="button-71" type="button" value="Daten auf Server entfernen" onclick="deleteData()">
+    <label>Passwort:</label>
+    <input id="password-input" type="password">
+</div>
+
 
 <h1>Reports aus dem Verkehrssimulator</h1>
-<div class="tbl-header">
-    <table>
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Autos</th>
-            <th>Anzahl Sekunden</th>
-            <th>Zeit</th>
-        </tr>
-        </thead>
-    </table>
-</div>
-<div class="tbl-content">
-    <table id="table">
-        <tbody>
-            <tr>
 
-            </tr>
-        </tbody>
-    </table>
-</div>
+<table class="sortable" id="table">
+    <thead>
+    <tr>
+        <th>Name:</th>
+        <th>Anzahl Autos:</th>
+        <th>Anzahl Sekunden:</th>
+        <th>Zeit:</th>
+    </tr>
+    </thead>
+    <tbody id="table-data">
+
+    </tbody>
+</table>
+
 
