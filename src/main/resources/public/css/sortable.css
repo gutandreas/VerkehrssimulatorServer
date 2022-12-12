@@ -59,7 +59,7 @@
 .sortable th {
   background-color: rgba(255,20,20,0.9);
   color: var(--th-color);
-  font-weight: normal;
+  font-weight: bold;
   text-align: left;
   text-transform: capitalize;
   vertical-align: baseline;

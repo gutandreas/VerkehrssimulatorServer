@@ -3,7 +3,7 @@ h1{
   font-size: 50px;
   color: #000000;
   text-transform: uppercase;
-  font-weight: 300;
+  font-weight: 450;
   text-align: center;
   margin-bottom: 15px;
 }
@@ -14,6 +14,8 @@ table{
 
 .button-area{
   font-size: 15px;
+  background: #101010;
+  padding: 1%;
 }
 
 .button-area label{
@@ -60,10 +62,9 @@ td{
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
 body{
-  /*background: -webkit-linear-gradient(left, #25c481, #25b7c4);*/
-  background: linear-gradient(to bottom, #99cc90, #0078d0);
   background-size: cover;
   background-image: url("../images/background.png");
+  background-attachment: fixed;
   font-family: 'Roboto', sans-serif;
 }
 section{
@@ -102,7 +103,6 @@ table.tablesorter thead tr th, table.tablesorter tfoot tr th {
   padding: 4px;
 }
 table.tablesorter thead tr .header {
-  background-image: url(bg.gif);
   background-repeat: no-repeat;
   background-position: center right;
   cursor: pointer;
