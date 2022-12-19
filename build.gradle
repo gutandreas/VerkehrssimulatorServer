@@ -6,7 +6,7 @@ plugins {
 
 group = 'edu.andreasgut.simulation'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '1.8'
 
 repositories {
 	mavenCentral()
@@ -16,7 +16,18 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation group: 'org.json', name: 'json', version: '20201115' //Um JSONObject zu verwenden
-	implementation("org.springframework.boot:spring-boot-starter-websocket:2.4.4") //Um Websockets zu verwenden
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	//implementation("org.springframework.boot:spring-boot-starter-websocket:2.4.4") //Um Websockets zu verwenden
+}
+
+task fatJar(type: Jar) {
+
+	manifest {
+		attributes 'Main-Class': 'edu/andreasgut/simulation/verkehrssimulator_server/VerkehrssimulatorServerApplication';
+	}
+	archiveBaseName = project.name + '-exp'
+	from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+	with jar
 }
 
 bootJar {}

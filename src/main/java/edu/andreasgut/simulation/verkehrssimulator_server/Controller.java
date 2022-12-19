@@ -9,8 +9,6 @@ import org.json.JSONObject;
 import org.springframework.web.servlet.ModelAndView;
 
 
-
-
 @RestController
 public class Controller {
 
@@ -27,6 +25,12 @@ public class Controller {
         modelAndView.setViewName("/index.html");
         System.out.println("Webseite abgefragt");
         return modelAndView;
+    }
+
+    @GetMapping(value="/test")
+    public String testApp() {
+
+        return "Okay";
     }
 
     @GetMapping(value="/ranking")
